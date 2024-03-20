@@ -8,5 +8,7 @@ public class Pikeman extends Person {
     public void attack(Person person){
         person.health -= this.power;
     }
-
+    public String toString() {
+        return String.format("Name: %s Class: %s" , name, this.getClass().getSimpleName());
+    }
 }
