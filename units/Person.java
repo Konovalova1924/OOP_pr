@@ -1,5 +1,7 @@
 package units;
 
+import java.util.ArrayList;
+
 public abstract class Person {
     protected String name;
     protected int health;
@@ -9,9 +11,11 @@ public abstract class Person {
     protected int endurance; // Выносливость
     protected String weapon;
     protected int gold;
+    protected String className;
+    protected Position position;
     
     public Person(String name, int health, int power, int age, int armor, 
-    int endurance, String weapon, int gold){
+    int endurance, String weapon, int gold, String className, int x, int y){
         this.name = name;
         this.health = health;
         this.power = power;
@@ -20,11 +24,31 @@ public abstract class Person {
         this.endurance = endurance;
         this.weapon = weapon;
         this.gold = gold;
+        this.className = className;
+        this.position = new Position(x, y);
     }
     @Override
     public String toString() {
-        return name;
-    }    
+        return (className + " -> " + name + " x: " + position.x + " y: " + position.y );
+    }   
 
+    public Person findNearestPerson(ArrayList<Person> persons)
+    {
+        Person target = null;
+        float minDistance = Float.MAX_VALUE;
 
+        for (Person p : persons)
+        {
+            if (p.health > 0)
+            {
+                float dist = position.distanceTo(p.position);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    target = p;
+                }
+            }
+        }
+        return target;
+    }
 }
