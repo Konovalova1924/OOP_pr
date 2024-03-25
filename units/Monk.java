@@ -5,9 +5,9 @@ public class Monk extends Person {
     private int healVal;
     private int healPrice;
 
-    public Monk (String name, int age) {
-        super(name, 60, 40, age, 20, 40, 
-        "spirit", 30); 
+    public Monk (String name, int x, int y) {
+        super(name, 60, 40, 34, 20, 40, 
+        "spirit", 30,"Монах", x, y); 
     }
     public void heal(Person person, int val) {
         person.health += this.healVal;
